@@ -1,0 +1,26 @@
+import numpy as np
+import pandas as pd
+import cv2
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+face_classifier=cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+
+image = cv2.imread(r"C:\Users\Acer\Desktop\camera\Camera\faces.jpg")
+fix_img=cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
+plt.imshow(fix_img)
+
+faces=face_classifier.detectMultiScale(image,1.3,5)
+
+if faces is ():
+    print("no more faces")
+    
+def detect_face(fix_img):
+    face_rects=face_classifier.detectMultiScale(fix_img)
+    
+    for(x,y,w,h) in faces:
+        cv2.rectangle(fix_img,(x,y),(x+w,y+h),(255,0,0),20)
+    return fix_img
+    
+result = detect_face(fix_img)
+plt.imshow(result)
